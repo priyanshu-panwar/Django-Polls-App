@@ -1,0 +1,15 @@
+{% extends 'polls/base.html' %}
+
+{% block title %}<title>Results - Polls</title>{% endblock %}
+{% block content %}
+
+<h1> {{ question.topic }} </h1>
+<h2> {{ question.question_text }} </h2>
+{% if error_message %} <p><strong>{{ error_message }}</strong></p> {% endif %}
+<ul>
+    {% for choice in question.choice_set.all %}
+    <li> {{ choice.choice_text }} -- {{choice.votes }} vote{{ choice.votes|pluralize }} </li>
+    {% endfor %}
+</ul>
+<a href = "{% url 'polls:detail' question.id %}"> Vote Again? </a>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'polls/base.html' %}
+{% load static %}
+{% block title %}<title>Home - Polls</title>{% endblock %}
+{% block content %}
+<h1>Polls Guy</h1>
+<h2>Select Your Question and vote</h2>
+<p><a href="">Add a Question</a></p>
+
+    {% if latest_question_list %}
+    <ul>
+        {% for question in latest_question_list %}
+        <li>
+            <a href="{% url 'polls:detail' question.id %}"> {{ question.topic }}</a>
+            <p class="text-muted">{{ question.question_text }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No Polls are available.</p>
+    {% endif %}
+{% endblock %}
